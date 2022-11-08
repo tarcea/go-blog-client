@@ -1,0 +1,25 @@
+.container {
+	padding: 5em;
+	color: rgb(61, 58, 67);
+}
+
+.title {
+	padding: 0 0 1em 1em;
+	font-size: 2em;
+}
+
+.by {
+	padding-left: 3em;
+}
+
+.link {
+	padding: 0.5em
+}
+.link:hover {
+	color: crimson
+}
+
+.commands {
+	padding: 0.5em;
+	font-size: small;
+}

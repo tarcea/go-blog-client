@@ -1,0 +1,16 @@
+.container {
+	color: rgb(24, 35, 69);
+	
+}
+
+.header {
+	padding: 2em;
+}
+
+.content {
+	padding: 0 0 2em 2em;
+}
+
+.postBody {
+	padding-top: 1em
+}
