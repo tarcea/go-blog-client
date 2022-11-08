@@ -40,6 +40,7 @@ const deletePost = async () => {
 					<div className={style.commands}>
 						<Link to="/posts" className={style.link}>Back</Link>
 						<Link to="/posts" onClick={deletePost} className={style.link}>Delete</Link>
+						<Link to={`/posts/${post.id}/edit`} className={style.link}>Edit</Link>
 					</div>
 						<div key={post.id}>
 							<h3 className={style.by}>{post.author}</h3>

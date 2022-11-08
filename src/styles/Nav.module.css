@@ -1,0 +1,10 @@
+.container {
+	padding: 2em;
+}
+
+.link {
+	padding: 0.5em
+}
+.link:hover {
+	color: crimson
+}
