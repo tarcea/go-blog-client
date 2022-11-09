@@ -5,21 +5,26 @@ import Nav from './components/Nav';
 import PageNotFound from './components/PageNotFound';
 import Post from './components/Post';
 import PostList from './components/PostList';
+import { AuthProvider } from './context/UserContext';
 
 function App() {
-  
+ 
   return (
-    <div>
-      <Nav />
-      <Login />
-      <Routes>
-        <Route path='/posts' element={<PostList />} />
-        <Route path='/posts/:id' element={<Post />} />
-        <Route path='/posts/:id/edit' element={<EditPost />} />
+    <>
+    <AuthProvider>
+      <>
+        <Nav />
+        <Login />
+        <Routes>
+          <Route path='/posts' element={<PostList />} />
+          <Route path='/posts/:id' element={<Post />} />
+          <Route path='/posts/:id/edit' element={<EditPost />} />
 
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </div>
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </>
+      </AuthProvider>
+    </>
   );
 }
 

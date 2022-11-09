@@ -1,20 +1,10 @@
 import { useState } from "react";
+import { useAuth } from "../context/UserContext";
 
 const Login = () => {
 	const [inputs, setInputs] = useState<any>({})
-	const [server] = useState(process.env.REACT_APP_SERVER_URL)
 
-	const login = async (data: any) => {
-await fetch(`${server}/users/login`, {
-	method: 'POST',
-	credentials: 'include',
-	headers: {
-    'Content-Type': 'application/json',
-		'Accept':       'application/json',
-  },
-	body: JSON.stringify(data)
-})
-	}
+	const {login, logout} = useAuth()
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
@@ -30,11 +20,15 @@ await fetch(`${server}/users/login`, {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<input type="text" name="email" placeholder="email" onChange={handleChange} />
-			<input type="text" name="password" placeholder="password" onChange={handleChange}/>
-			<input type="submit" />
-		</form>
+		<>
+			<form onSubmit={handleSubmit}>
+				<input type="text" name="email" placeholder="email" onChange={handleChange} />
+				<input type="text" name="password" placeholder="password" onChange={handleChange}/>
+				<input type="submit" value="Log in"/>
+			</form>
+				<button onClick={() => logout()}>logout</button>
+			
+		</>
 	);
 }
 

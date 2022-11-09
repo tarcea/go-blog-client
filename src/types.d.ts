@@ -7,3 +7,11 @@ type Post = {
 	author: string,
 	message?: string
 }
+
+interface AppContextInterface {
+  currentUser: CurrentUser;
+}
+
+type CurrentUser = {
+  email: string
+}
