@@ -1,5 +1,15 @@
 .container {
-	padding: 2em;
+	background: var(--color-light-grey);
+  padding: 1em 1em 1em 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 3em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+	margin-bottom: 2em;
 }
 
 .link {

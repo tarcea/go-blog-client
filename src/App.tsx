@@ -20,7 +20,7 @@ function App() {
           <Route path='/posts/:id' element={<Post />} />
           <Route path='/posts/:id/edit' element={<EditPost />} />
 
-          <Route path='/login' element={<Login user={currentUser}/>} />
+          <Route path='/login' element={<Login />} />
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/UserContext";
 
-const Login = ({user}: any) => {
+const Login = () => {
 	const [inputs, setInputs] = useState<any>({})
 	const navigate = useNavigate()
 	const {login} = useAuth()
