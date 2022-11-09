@@ -30,7 +30,7 @@ const PostList = () => {
               <h3>
                 {post.title}
               </h3>
-              <h4>by {post.author}</h4>
+              <h4>{post.author && `by ${post.author}`}</h4>
               <p className={style.postBody}>{post.body.slice(0, 100)}</p>
             </Link>
           </div>
