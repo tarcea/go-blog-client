@@ -1,12 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
 
-// export const UserContext = createContext<AppContextInterface | null>(null);
-const UserContext = createContext<any | null>(null);
+export const UserContext = createContext<any | null>(null);
 
-export const useAuth = () => {
-  return useContext(UserContext);
-};
+// export const useAuth = () => {
+//   return useContext(UserContext);
+// };
 
 type Props = {
   children: JSX.Element,
@@ -17,7 +16,7 @@ export const AuthProvider = ({ children }: Props) => {
 	const [server] = useState(process.env.REACT_APP_SERVER_URL)
   const [currentUser, setCurrentUser] = useState(null);
 
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const [cookies] = useCookies(['token']);
 
 	const getUser = async () => {
     const a = await fetch(`${server}/validate`, {
@@ -44,6 +43,7 @@ export const AuthProvider = ({ children }: Props) => {
 			},
 			body: JSON.stringify(data)
 		})
+		await getUser()
 	}
 
 	const logout = async () => {
@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }: Props) => {
 				'Accept':       '*/*',
 			}
 		})
+		setCurrentUser(null)
 	}
 
   useEffect(() => {

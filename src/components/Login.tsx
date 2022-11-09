@@ -1,14 +1,16 @@
-import { useState } from "react";
-import { useAuth } from "../context/UserContext";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
-const Login = () => {
+const Login = ({user}: any) => {
 	const [inputs, setInputs] = useState<any>({})
-
-	const {login, logout, cookies} = useAuth()
+	const navigate = useNavigate()
+	const {login} = useContext(UserContext)
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
 		await login(inputs)
+		navigate("/posts")
 	}
 
 	const handleChange = (e: any) => {
@@ -21,17 +23,11 @@ const Login = () => {
 
 	return (
 		<>
-				{cookies.token
-				? 
-				<button onClick={() => logout()}>logout</button>
-				:
-				<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<input type="text" name="email" placeholder="email" onChange={handleChange} />
 				<input type="text" name="password" placeholder="password" onChange={handleChange}/>
 				<input type="submit" value="Log in"/>
 			</form>
-				}
-			
 		</>
 	);
 }
