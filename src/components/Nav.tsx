@@ -7,18 +7,22 @@ const Nav = () => {
 	const {logout, currentUser} = useAuth()
 
 	return (
-		<div className={style.container}>
-			
-			<Link to="/posts" className={style.link}>Home</Link>
-			<Link to="/posts" className={style.link}>Home</Link>
-			<Link to="/posts" className={style.link}>Home</Link>
-			{currentUser 
-				?
-				<Link to="/posts" className={style.link} onClick={() => logout()}>Logout</Link>
-				:
-			<Link to="/login" className={style.link} >Login</Link>}
-			<span>{currentUser}</span>
-		</div>
+		<>
+			<div className={style.container}>
+				<div className={style.links}>
+					<Link to="/posts" className={style.link}>Home</Link>
+					<Link to="/posts" className={style.link}>Home</Link>
+					<Link to="/posts" className={style.link}>Home</Link>
+					{currentUser 
+						?
+						<Link to="/posts" className={style.link} onClick={() => logout()}>Logout</Link>
+						:
+					<Link to="/login" className={style.link} >Login</Link>}
+				</div>
+				
+				<span className={style.user}>{currentUser}</span>
+			</div>
+		</>
 	);
 }
 

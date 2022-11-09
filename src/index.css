@@ -7,6 +7,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --ff-sans-serif: 'Nunito', sans-serif;
+  --color-light-grey: #f6f6f8;
+  --color-pink: #DD7596;
+  --ff-ui-title: 'Lato', sans-serif;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

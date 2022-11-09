@@ -32,7 +32,7 @@ const deletePost = async () => {
   useEffect(() => {
     getPosts()
   },[])
-  console.log(typeof +uid, typeof post?.userId)
+ 
   return (
 		<>
 			<div className={style.container}>
