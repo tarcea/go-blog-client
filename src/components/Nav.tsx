@@ -8,7 +8,7 @@ const Nav = () => {
 
 	return (
 		<div className={style.container}>
-			{currentUser}
+			
 			<Link to="/posts" className={style.link}>Home</Link>
 			<Link to="/posts" className={style.link}>Home</Link>
 			<Link to="/posts" className={style.link}>Home</Link>
@@ -17,6 +17,7 @@ const Nav = () => {
 				<Link to="/posts" className={style.link} onClick={() => logout()}>Logout</Link>
 				:
 			<Link to="/login" className={style.link} >Login</Link>}
+			<span>{currentUser}</span>
 		</div>
 	);
 }
