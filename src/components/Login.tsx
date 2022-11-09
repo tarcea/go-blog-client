@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { useAuth } from "../context/UserContext";
 
 const Login = ({user}: any) => {
 	const [inputs, setInputs] = useState<any>({})
 	const navigate = useNavigate()
-	const {login} = useContext(UserContext)
+	const {login} = useAuth()
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()

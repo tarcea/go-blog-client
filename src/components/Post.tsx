@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../context/UserContext';
 import style from '../styles/Post.module.css';
 import PageNotFound from './PageNotFound';
 
@@ -9,7 +10,9 @@ const Post = () => {
 	const [server] = useState(process.env.REACT_APP_SERVER_URL)
  
   const [post, setPost] = useState<Post>()
-	console.log(post)
+
+	const { uid } = useAuth()
+	
   const getPosts = async () => {
     const a = await fetch(`${server}/posts/${params.id}`, {
 			method: 'GET',
@@ -22,13 +25,14 @@ const deletePost = async () => {
 	await fetch(`${server}/posts/${params.id}`, {
 		method: 'DELETE',
 	})
+	await getPosts()
 	navigate("/posts")
 }
 
   useEffect(() => {
     getPosts()
   },[])
-  
+  console.log(typeof +uid, typeof post?.userId)
   return (
 		<>
 			<div className={style.container}>
@@ -39,8 +43,24 @@ const deletePost = async () => {
 					<>
 					<div className={style.commands}>
 						<Link to="/posts" className={style.link}>Back</Link>
-						<Link to="/posts" onClick={deletePost} className={style.link}>Delete</Link>
-						<Link to={`/posts/${post.id}/edit`} className={style.link}>Edit</Link>
+						{+uid === post.userId &&
+							<span>
+							<Link
+								to="/posts"
+								onClick={deletePost}
+								className={style.link}
+							>
+								Delete
+							</Link>
+							<Link
+								to={`/posts/${post.id}/edit`}
+								className={style.link}
+							>
+								Edit
+							</Link>
+						</span>
+						}
+						
 					</div>
 						<div key={post.id}>
 							<h3 className={style.by}>{post.author}</h3>

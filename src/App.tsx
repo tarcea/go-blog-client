@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import EditPost from './components/EditPost';
 import Login from './components/Login';
@@ -6,11 +5,11 @@ import Nav from './components/Nav';
 import PageNotFound from './components/PageNotFound';
 import Post from './components/Post';
 import PostList from './components/PostList';
-import { UserContext } from './context/UserContext';
+import { useAuth } from './context/UserContext';
 
 function App() {
 
-  const { currentUser} = useContext(UserContext)
+  const { currentUser} = useAuth()
  
   return (
     <>

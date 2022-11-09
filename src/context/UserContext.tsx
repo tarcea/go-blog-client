@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
 
-export const UserContext = createContext<any | null>(null);
+const UserContext = createContext<any | null>(null);
 
-// export const useAuth = () => {
-//   return useContext(UserContext);
-// };
+export const useAuth = () => {
+  return useContext(UserContext);
+};
 
 type Props = {
   children: JSX.Element,
@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }: Props) => {
 	const [loading, setLoading] = useState(true);
 	const [server] = useState(process.env.REACT_APP_SERVER_URL)
   const [currentUser, setCurrentUser] = useState(null);
+	const [uid, setUid] = useState(null);
 
   const [cookies] = useCookies(['token']);
 
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }: Props) => {
     })
     const res = await a.json()
     setCurrentUser(res.user)
+		setUid(res.uid)
   }
 
 	const login = async (data: any) => {
@@ -57,6 +59,7 @@ export const AuthProvider = ({ children }: Props) => {
 			}
 		})
 		setCurrentUser(null)
+		setUid(null)
 	}
 
   useEffect(() => {
@@ -73,7 +76,8 @@ export const AuthProvider = ({ children }: Props) => {
     currentUser,
 		login,
 		logout,
-		cookies
+		cookies,
+		uid
   };
 
   return (
