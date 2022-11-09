@@ -4,7 +4,7 @@ import { useAuth } from "../context/UserContext";
 const Login = () => {
 	const [inputs, setInputs] = useState<any>({})
 
-	const {login, logout} = useAuth()
+	const {login, logout, cookies} = useAuth()
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
@@ -21,12 +21,16 @@ const Login = () => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
+				{cookies.token
+				? 
+				<button onClick={() => logout()}>logout</button>
+				:
+				<form onSubmit={handleSubmit}>
 				<input type="text" name="email" placeholder="email" onChange={handleChange} />
 				<input type="text" name="password" placeholder="password" onChange={handleChange}/>
 				<input type="submit" value="Log in"/>
 			</form>
-				<button onClick={() => logout()}>logout</button>
+				}
 			
 		</>
 	);

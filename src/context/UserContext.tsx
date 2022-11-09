@@ -71,7 +71,8 @@ export const AuthProvider = ({ children }: Props) => {
   const value: any = {
     currentUser,
 		login,
-		logout
+		logout,
+		cookies
   };
 
   return (
