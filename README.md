@@ -1,1 +1,1 @@
-# Client for go-fiber-blog
+# Client for [go-fiber-blog](https://github.com/tarcea/go-fiber-blog)
