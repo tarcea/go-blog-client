@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useMessage } from "../context/MessageContext";
 import { useAuth } from "../context/UserContext";
 import style from '../styles/Login.module.css';
 
@@ -7,11 +8,20 @@ const Login = () => {
 	const [inputs, setInputs] = useState<any>({})
 	const navigate = useNavigate()
 	const {login} = useAuth()
+	const {message, setMessage} = useMessage()
 
 	const handleSubmit = async (e: any) => {
-		e.preventDefault()
-		await login(inputs)
-		navigate("/posts")
+	
+		try {
+			e.preventDefault()
+			await login(inputs)
+			navigate("/posts")
+			
+		} catch (err) {
+			console.log(err)
+			return
+		}
+		
 	}
 
 	const handleChange = (e: any) => {

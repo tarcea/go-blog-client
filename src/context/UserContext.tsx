@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
+import { useMessage } from "./MessageContext";
 
 const UserContext = createContext<any | null>(null);
 
@@ -18,39 +19,34 @@ export const AuthProvider = ({ children }: Props) => {
 	const [uid, setUid] = useState(null);
 
   const [cookies] = useCookies(['token']);
+	const {setMessage} = useMessage()
 
 	const getUser = async () => {
-    const a = await fetch(`${server}/validate`, {
-      method: 'GET',
-      // mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept':       '*/*',
-      },
-    })
-    const res = await a.json()
-    setCurrentUser(res.user)
-		setUid(res.uid)
+		try {
+			const response = await fetch(`${server}/validate`, {
+				method: 'GET',
+				// mode: 'cors',
+				credentials: 'include',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept':       '*/*',
+				},
+			})
+			if (response.ok) {
+				const res = await response.json()
+				setCurrentUser(res.user)
+				setUid(res.uid)
+			}
+
+		} catch (err) {
+			console.log(err)
+		}
+   
   }
 
 	const login = async (data: any) => {
-		await fetch(`${server}/users/login`, {
-			method: 'POST',
-			// mode: 'cors',
-			credentials: 'include',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept':       '*/*',
-			},
-			body: JSON.stringify(data)
-		})
-		await getUser()
-	}
-
-	const signUp = async (data: any) => {
 		try {
-			await fetch(`${server}/users/signup`, {
+			const response = await fetch(`${server}/users/login`, {
 				method: 'POST',
 				// mode: 'cors',
 				credentials: 'include',
@@ -60,7 +56,37 @@ export const AuthProvider = ({ children }: Props) => {
 				},
 				body: JSON.stringify(data)
 			})
+
+			if (!response.ok) {
+				const {message} = await response.json()
+				setMessage(message)
+				return
+			}
+			
 			await getUser()
+			
+		} catch (err) {
+			
+			console.log(err)
+		}
+		
+	}
+
+	const signUp = async (data: any) => {
+		try {
+			const response = await fetch(`${server}/users/signup`, {
+				method: 'POST',
+				// mode: 'cors',
+				credentials: 'include',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept':       '*/*',
+				},
+				body: JSON.stringify(data)
+			})
+			if (response.ok) {
+				await getUser()
+			}
 		} catch (err) {
 			console.log(err)
 			return

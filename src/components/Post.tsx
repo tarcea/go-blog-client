@@ -25,7 +25,7 @@ const deletePost = async () => {
 	await fetch(`${server}/posts/${params.id}`, {
 		method: 'DELETE',
 	})
-	await getPosts()
+	
 	navigate("/posts")
 }
 
@@ -63,9 +63,9 @@ const deletePost = async () => {
 						
 					</div>
 						<div key={post.id}>
-							<h3 className={style.by}>{post.author}</h3>
+							{/* <h3 className={style.by}>{post.author}</h3> */}
 							<h3 className={style.title}>{post.title}</h3>
-							<p>{post.body}</p>
+							<section className={style.body}>{post.body}</section>
 						</div>
 					</>
 				)

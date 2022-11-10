@@ -1,16 +1,46 @@
 .container {
 	color: rgb(24, 35, 69);
-	
+	width: 90vw;
+	margin: 0 auto;
 }
 
 .header {
-	padding: 2em;
+	padding: 2em 0 1em 2em;
+	font-weight:500;
 }
 
 .content {
-	padding: 0 0 2em 2em;
+	padding: 0 0 0.3em 1em;
+}
+
+.content h3{
+	font-size: small;
+}
+
+.content h3:hover{
+color: crimson;
 }
 
 .postBody {
 	padding-top: 1em
 }
+
+@media screen and (min-width: 768px) {
+	.container {
+		width: 60vw;
+	}
+
+	.content {
+		padding: 0 0 0.5em 1em;
+	}
+
+	.content h3{
+		font-size: medium;
+	}
+
+	.header {
+		padding: 2em 0 1em 2em;
+		font-weight:500;
+	}
+}
+

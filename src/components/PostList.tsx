@@ -21,7 +21,7 @@ const PostList = () => {
  
   return (
     <div className={style.container}>
-        <h1 className={style.header}>Bring your posts and build something great</h1>
+        <h1 className={style.header}>All posts</h1>
         {/* {token && <p>Logged in</p>} */}
         
         {posts && posts.map((post: Post) => (
@@ -30,8 +30,8 @@ const PostList = () => {
               <h3>
                 {post.title}
               </h3>
-              <h4>{post.author && `by ${post.author}`}</h4>
-              <p className={style.postBody}>{post.body.slice(0, 100)}</p>
+              {/* <h4>{post.author && `by ${post.author}`}</h4> */}
+              {/* <p className={style.postBody}>{post.body.slice(0, 100)}</p> */}
             </Link>
           </div>
         ))}

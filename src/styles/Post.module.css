@@ -5,11 +5,14 @@
 
 .title {
 	padding: 0 0 1em 1em;
-	font-size: 2em;
+	font-weight: 600;
+	/* font-size: 2em; */
 }
 
 .by {
 	padding-left: 3em;
+	font-weight: 200;
+	font-size: small;
 }
 
 .link {
@@ -22,4 +25,15 @@
 .commands {
 	padding: 0.5em;
 	font-size: small;
+}
+
+.body {
+	font-weight: 300;
+	font-size: small;
+}
+
+@media screen and (min-width: 768px) {
+	.body {
+		font-size: medium;
+	}
 }

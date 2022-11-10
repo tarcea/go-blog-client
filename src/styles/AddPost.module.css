@@ -1,0 +1,84 @@
+.container {
+	background-color: white;
+  min-height: 80vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+	margin: 0 auto;
+}
+
+.innerContainer {
+	width: 90vw;
+  max-width: 400px;
+  height: 100%;
+  margin: 0 auto;
+  background-color: var(--color-light-grey);
+  text-align: left;
+  padding: 4em 1.5em ;
+  border-radius: 4px;
+  border: 1px solid rgb(66, 133, 244, 0.1);
+}
+
+.innerContainer input[type=submit] {
+	background: rgb(66, 133, 244, 1);
+  border: 0;
+  padding: 1.2em;
+  color: var(--color-light-grey);
+  cursor: pointer;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+}
+
+.innerContainer input[type=submit]:hover {
+  color: white;
+  background: rgb(66, 133, 244, 0.9);
+  text-decoration: underline;
+}
+
+.innerContainer input, textarea {
+  display: block;
+  padding: 1em 0.5em;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  color: #555555;
+  margin-bottom: 1em;
+  border-radius: 4px;
+}
+
+.innerContainer input[type="checkbox"] {
+	position: relative;
+  display: block;
+  left: 64px;
+  top: -15px;
+  width: 12px;
+  height: 12px;
+}
+
+.innerContainer label {
+	font-weight: 200;
+}
+
+.header {
+	padding-bottom: 1em;
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 0.1em;
+}
+
+.link {
+  font-size: 1em;
+  text-align: center;
+}
+
+.link a {
+  color: rgb(7, 98, 245);
+}
+
+@media screen and (min-width: 768px) {
+
+}
