@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/UserContext";
 import style from '../styles/Login.module.css';
 
-const Login = () => {
+const Signup = () => {
 	const [inputs, setInputs] = useState<any>({})
 	const navigate = useNavigate()
-	const {login} = useAuth()
+	const {signUp} = useAuth()
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
-		await login(inputs)
+		await signUp(inputs)
 		navigate("/posts")
 	}
 
@@ -26,9 +26,15 @@ const Login = () => {
 		<div className={style.container}>
 			<div className={style.innerContainer}>
 				<h2 className={style.header}>
-          Log in
+          Sign Up
         </h2>
 				<form onSubmit={handleSubmit}>
+				<input
+						type="text"
+						name="username"
+						placeholder="username"
+						onChange={handleChange}
+					/>
 					<input
 						type="email"
 						name="email"
@@ -41,12 +47,12 @@ const Login = () => {
 						placeholder="password"
 						onChange={handleChange}
 					/>
-					<input type="submit" value="Log in"/>
+					<input type="submit" value="Sign Up"/>
 				</form>
 				<div className={style.link}>
-          Don't have an account?{' '}
-          <Link to="/signup">
-            <strong>Sign Up!</strong>
+				Already have an account?{' '}
+          <Link to="/login">
+            <strong>Login!</strong>
           </Link>
         </div>
 			</div>
@@ -54,4 +60,4 @@ const Login = () => {
 	);
 }
 
-export default Login
+export default Signup

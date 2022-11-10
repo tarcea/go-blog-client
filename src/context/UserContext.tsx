@@ -48,6 +48,20 @@ export const AuthProvider = ({ children }: Props) => {
 		await getUser()
 	}
 
+	const signUp = async (data: any) => {
+		await fetch(`${server}/users/signup`, {
+			method: 'POST',
+			// mode: 'cors',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept':       '*/*',
+			},
+			body: JSON.stringify(data)
+		})
+		await getUser()
+	}
+
 	const logout = async () => {
 		await fetch(`${server}/users/logout`, {
 			method: 'POST',
@@ -76,6 +90,7 @@ export const AuthProvider = ({ children }: Props) => {
     currentUser,
 		login,
 		logout,
+		signUp,
 		cookies,
 		uid
   };
