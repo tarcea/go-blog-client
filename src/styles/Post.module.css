@@ -1,12 +1,11 @@
 .container {
-	padding: 5em;
+	padding: 5em 2em 2em 2em;
 	color: rgb(61, 58, 67);
 }
 
 .title {
 	padding: 0 0 1em 1em;
 	font-weight: 600;
-	/* font-size: 2em; */
 }
 
 .by {
@@ -35,5 +34,9 @@
 @media screen and (min-width: 768px) {
 	.body {
 		font-size: medium;
+	}
+
+	.container {
+		padding: 5em;
 	}
 }

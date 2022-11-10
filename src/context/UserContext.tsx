@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }: Props) => {
 	const [server] = useState(process.env.REACT_APP_SERVER_URL)
   const [currentUser, setCurrentUser] = useState(null);
 	const [uid, setUid] = useState(null);
+	const [username, setUsername] = useState(null);
 
   const [cookies] = useCookies(['token']);
 	const {setMessage} = useMessage()
@@ -32,12 +33,17 @@ export const AuthProvider = ({ children }: Props) => {
 					'Accept':       '*/*',
 				},
 			})
-			if (response.ok) {
-				const res = await response.json()
-				setCurrentUser(res.user)
-				setUid(res.uid)
+			if (!response.ok) {
+				const {message} = await response.json()
+				setMessage(message)
+				return
 			}
 
+			const res = await response.json()
+
+				setCurrentUser(res.user)
+				setUid(res.uid)
+				setUsername(res.username)
 		} catch (err) {
 			console.log(err)
 		}
@@ -84,9 +90,12 @@ export const AuthProvider = ({ children }: Props) => {
 				},
 				body: JSON.stringify(data)
 			})
-			if (response.ok) {
-				await getUser()
+			if (!response.ok) {
+				const {message} = await response.json()
+				setMessage(message)
+				return
 			}
+			await getUser()
 		} catch (err) {
 			console.log(err)
 			return
@@ -120,6 +129,7 @@ export const AuthProvider = ({ children }: Props) => {
 
   const value: any = {
     currentUser,
+		username,
 		login,
 		logout,
 		signUp,

@@ -1,10 +1,11 @@
 .container {
-	color: rgb(24, 35, 69);
+	color: rgb(9, 25, 71);
 	width: 90vw;
 	margin: 0 auto;
 }
 
 .header {
+	color: rgb(8, 8, 8);
 	padding: 2em 0 1em 2em;
 	font-weight:500;
 }

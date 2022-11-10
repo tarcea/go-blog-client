@@ -20,8 +20,9 @@ const Nav = () => {
 						:
 					<Link to="/login" className={style.link} >Login</Link>}
 				</div>
-				
-				<span className={style.user}>{currentUser}</span>
+				{currentUser && <Link to="/dashboard" className={style.link} >
+					<span className={style.user}>{currentUser}</span>
+				</Link>}
 			</div>
 		</>
 	);

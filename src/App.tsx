@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import AddPost from './components/AddPost';
+import Dashboard from './components/Dashboard';
 import EditPost from './components/EditPost';
+import Footer from './components/Footer';
 import Login from './components/Login';
 import Message from './components/Message';
 import Nav from './components/Nav';
@@ -9,11 +11,8 @@ import Post from './components/Post';
 import PostList from './components/PostList';
 import Signup from './components/Signup';
 import { useMessage } from './context/MessageContext';
-import { useAuth } from './context/UserContext';
 
 function App() {
-
-  const { currentUser} = useAuth()
   const {message} = useMessage()
  
   return (
@@ -29,9 +28,11 @@ function App() {
 
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/dashboard' element={<Dashboard />} />
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <Footer />
       </div>
     </>
   );
