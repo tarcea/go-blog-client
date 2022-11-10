@@ -49,17 +49,23 @@ export const AuthProvider = ({ children }: Props) => {
 	}
 
 	const signUp = async (data: any) => {
-		await fetch(`${server}/users/signup`, {
-			method: 'POST',
-			// mode: 'cors',
-			credentials: 'include',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept':       '*/*',
-			},
-			body: JSON.stringify(data)
-		})
-		await getUser()
+		try {
+			await fetch(`${server}/users/signup`, {
+				method: 'POST',
+				// mode: 'cors',
+				credentials: 'include',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept':       '*/*',
+				},
+				body: JSON.stringify(data)
+			})
+			await getUser()
+		} catch (err) {
+			console.log(err)
+			return
+		}
+	
 	}
 
 	const logout = async () => {
